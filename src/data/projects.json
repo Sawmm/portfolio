@@ -1,0 +1,22 @@
+[
+  {
+    "id": "soulsearch",
+    "title": "SoulSearch",
+    "description": "A high-performance Terminal User Interface (TUI) for the Soulseek P2P network. Built with Node.js, React (Ink), and slsk-client. Features include audio-only filtering, Discogs/YouTube integration, auto-conversion to CDJ-compatible formats, and spectral analysis to detect fake bitrates.",
+    "github": "https://github.com/Sawmm/soulsearch",
+    "tech": ["Node.js", "React", "TypeScript", "Ink"],
+    "images": []
+  },
+  {
+    "id": "MM",
+    "title": "Meta Markets",
+    "description": "Meta-Market is a tribute to the workers who bring Hong Kong to life through its wet markets. As a vegetarian outsider, I moved through stalls of meat and fish to document the vendors the city depends upon, capturing brief moments of connection with those who welcomed my camera. Inspired by Ken Kitano, I created 'meta-portraits' by layering images of vendors, customers, and products from Lok Fu, Shek Kip Mei, and Pei Ho to represent the density and rhythm of market life. To ensure individual stories remained visible, I also isolated the people involved around an empty central space to suggest their shared presence and unity. Printed on matte paper, this work gives these often underappreciated workers a voice and a place in the frame.",
+    "images": ["src/images/meats -2.jpg", "src/images/vegs.jpg", "src/images/vendors-1-2.jpg", "src/images/cust1_mock_color.jpg"]
+  },
+  {
+    "id": "project-3",
+    "title": "Project Three",
+    "description": "Description of project three goes here.",
+    "images": []
+  }
+]

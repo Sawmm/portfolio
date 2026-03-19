@@ -1,0 +1,145 @@
+---
+import projects from "../data/projects.json";
+---
+
+<div id="page-container" class="font-mono max-w-5xl mx-auto px-8 pt-16 pb-8 select-none">
+    <h1 class="stagger-item text-center text-xl font-bold pb-10" style="--delay: 0ms">Sam Huisman</h1> 
+    <!-- GitHub Link -->
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    
+    
+    <!-- Left Column: Project List -->
+    <div>
+      <ul class="space-y-5 p-6">
+        {projects.map((project, index) => (
+          <li 
+            class="stagger-item cursor-pointer p-3"
+            style={`--delay: ${(index + 1) * 100}ms`}
+          >
+            <span data-id={project.id} class="hover-underline focus:font-bold">{project.title}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+    
+    <!-- Right Column: Project Details -->
+    <div id="detail-view" class="stagger-item p-6 min-h-[400px]" style={`--delay: ${(projects.length + 1) * 100}ms`}>
+    </div>
+    
+    
+  </div>
+  <div class="stagger-item text-center mt-12 pt-8" style={`--delay: ${(projects.length + 2) * 100}ms`}>
+    <a href="https://github.com/sawmm" target="_blank" rel="noopener noreferrer" class="hover-underline">
+      github.com/sawmm
+    </a>
+  </div>
+</div>
+
+<script define:vars={{ projects }}>
+  const items = document.querySelectorAll('[data-id]');
+  const detailView = document.getElementById('detail-view');
+  
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const id = item.dataset.id;
+      const project = projects.find(p => p.id === id);
+      
+      if (project && detailView) {
+        // Create initial HTML without images visible
+        const imagesHtml = project.images && project.images.length > 0 
+          ? `<div class="grid grid-cols-2 gap-4 mb-4 opacity-0 transition-opacity duration-500" id="images-container">${project.images.map(img => `<img src="${img}" alt="${project.title}" class="w-full rounded" />`).join('')}</div>`
+          : '';
+        
+        detailView.innerHTML = `
+          <div class="opacity-0 transition-all duration-300 ease-out translate-y-2" id="project-content">
+            <h2 class="text-2xl font-bold mb-4">${project.title}</h2>
+            ${imagesHtml}
+            <p>${project.description}</p>
+          </div>
+        `;
+        items.forEach(itm => itm.classList.remove('font-bold'));
+        item.classList.add('font-bold');
+
+        // Animate in the content immediately
+        requestAnimationFrame(() => {
+          const content = document.getElementById('project-content');
+          if (content) {
+            content.classList.remove('opacity-0', 'translate-y-2');
+          }
+        });
+
+        // Wait for images to load then fade them in
+        if (project.images && project.images.length > 0) {
+          const imgContainer = document.getElementById('images-container');
+          const images = imgContainer ? imgContainer.querySelectorAll('img') : [];
+          let loadedCount = 0;
+          
+          images.forEach(img => {
+            if (img.complete) {
+              loadedCount++;
+            } else {
+              img.addEventListener('load', () => {
+                loadedCount++;
+                if (loadedCount === images.length && imgContainer) {
+                  imgContainer.classList.remove('opacity-0');
+                }
+              });
+            }
+          });
+          
+          // If all images already cached, show immediately
+          if (loadedCount === images.length && imgContainer) {
+            imgContainer.classList.remove('opacity-0');
+          }
+        }
+      }
+    });
+  });
+
+  // Stagger animation is handled by CSS
+</script>
+
+<style>
+.hover-underline {
+  position: relative;
+}
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;           /* Start from center */
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  transform: translateX(-50%);  /* Center the starting point */
+  transition: width 0.3s ease;
+}
+.hover-underline:hover::after {
+  width: 100%;
+}
+
+:global(body) {
+  background-color: #edede9;
+  color: #47545c
+}
+
+.stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: stairReveal 0.5s ease-out forwards;
+  animation-delay: var(--delay);
+}
+
+@keyframes stairReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+</style>
