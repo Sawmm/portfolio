@@ -24,10 +24,10 @@ export default defineConfig({
   {
     provider: fontProviders.local(),
     name: "Neue Regrade Variable",
-    cssVariable: "--Neue-regrade",
+    cssVariable: "--neue-regrade",
     options: {
       variants: [{
-        src: ['./public/fonts/SourceCodePro-Medium.ttf'],
+        src: ['./public/fonts/Neue Regrade Variable.ttf'],
         weight: 500,
         style: 'normal'
       }]
