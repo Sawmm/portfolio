@@ -1,33 +1,53 @@
 ---
 import projects from "../data/projects.json";
+
+const codingProjects = projects.filter(p => p.category === 'coding');
+const creativeProjects = projects.filter(p => p.category === 'creative');
 ---
 
 <div id="page-container" class="font-mono max-w-5xl mx-auto px-8 pt-16 pb-8 select-none">
     <a href="https://github.com/sawmm" target="_blank" rel="noopener noreferrer" class="block text-center mb-16 pb-5">
-      <h1 class="stagger-item inline-block text-xl font-bold pb-10 hover-underline" style="--delay: 0ms">Sam Huisman</h1>
+      <h1 class="stagger-item inline-block text-xl font-bold pb-10" style="--delay: 0ms">Sam Huisman</h1>
     </a>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     
-    
     <!-- Left Column: Project List -->
     <div>
-      <ul class="space-y-5 p-6">
-        {projects.map((project, index) => (
-          <li 
-            class="stagger-item cursor-pointer p-3"
-            style={`--delay: ${(index + 1) * 100}ms`}
-          >
-            <span data-id={project.id} class="hover-underline focus:font-bold">{project.title}</span>
-          </li>
-        ))}
-      </ul>
+      <!-- Coding Projects -->
+      <div class="mb-8">
+        <h2 class="text-sm font-bold mb-4 opacity-60 uppercase tracking-wider stagger-item" style="--delay: 50ms">Coding</h2>
+        <ul class="space-y-3">
+          {codingProjects.map((project, index) => (
+            <li 
+              class="stagger-item cursor-pointer p-3"
+              style={`--delay: ${(index + 2) * 100}ms`}
+            >
+              <span data-id={project.id} class="hover-underline focus:font-bold">{project.title}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      <!-- Creative Projects -->
+      <div>
+        <h2 class="text-sm font-bold mb-4 opacity-60 uppercase tracking-wider stagger-item" style={`--delay: ${(codingProjects.length + 2) * 100}ms`}>Creative</h2>
+        <ul class="space-y-3">
+          {creativeProjects.map((project, index) => (
+            <li 
+              class="stagger-item cursor-pointer p-3"
+              style={`--delay: ${(codingProjects.length + index + 3) * 100}ms`}
+            >
+              <span data-id={project.id} class="hover-underline focus:font-bold">{project.title}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
     
     <!-- Right Column: Project Details -->
-    <div id="detail-view" class="stagger-item p-6 min-h-[400px]" style={`--delay: ${(projects.length + 1) * 100}ms`}>
+    <div id="detail-view" class="stagger-item p-6 min-h-[400px]" style={`--delay: ${(projects.length + 3) * 100}ms`}>
     </div>
-    
     
   </div>
 </div>
@@ -42,8 +62,19 @@ import projects from "../data/projects.json";
       const project = projects.find(p => p.id === id);
       
       if (project && detailView) {
-        // Create initial HTML without images visible
-        const imagesHtml = project.images && project.images.length > 0 
+        // Handle both images and videos
+        const mediaHtml = project.media && project.media.length > 0 
+          ? `<div class="grid grid-cols-2 gap-4 mb-4 opacity-0 transition-opacity duration-500" id="media-container">${project.media.map(media => {
+              if (media.endsWith('.mp4') || media.endsWith('.webm') || media.endsWith('.mov')) {
+                return `<video src="${media}" autoplay loop muted playsinline class="w-full rounded" />`;
+              } else {
+                return `<img src="${media}" alt="${project.title}" class="w-full rounded" />`;
+              }
+            }).join('')}</div>`
+          : '';
+        
+        // Fallback to images if no media field
+        const imagesHtml = !project.media && project.images && project.images.length > 0 
           ? `<div class="grid grid-cols-2 gap-4 mb-4 opacity-0 transition-opacity duration-500" id="images-container">${project.images.map(img => `<img src="${img}" alt="${project.title}" class="w-full rounded" />`).join('')}</div>`
           : '';
         
@@ -59,7 +90,7 @@ import projects from "../data/projects.json";
         detailView.innerHTML = `
           <div class="opacity-0 transition-all duration-300 ease-out translate-y-2" id="project-content">
             <h2 class="text-2xl font-bold mb-4">${project.title}</h2>
-            ${imagesHtml}
+            ${mediaHtml || imagesHtml}
             ${githubHtml}
             <p>${project.description}</p>
           </div>
@@ -75,28 +106,37 @@ import projects from "../data/projects.json";
           }
         });
 
-        // Wait for images to load then fade them in
-        if (project.images && project.images.length > 0) {
-          const imgContainer = document.getElementById('images-container');
-          const images = imgContainer ? imgContainer.querySelectorAll('img') : [];
+        // Wait for media to load then fade them in
+        const container = document.getElementById('media-container') || document.getElementById('images-container');
+        if (container) {
+          const mediaElements = container.querySelectorAll('img, video');
           let loadedCount = 0;
           
-          images.forEach(img => {
-            if (img.complete) {
-              loadedCount++;
-            } else {
-              img.addEventListener('load', () => {
+          mediaElements.forEach(el => {
+            if (el.tagName === 'VIDEO') {
+              el.addEventListener('loadeddata', () => {
                 loadedCount++;
-                if (loadedCount === images.length && imgContainer) {
-                  imgContainer.classList.remove('opacity-0');
+                if (loadedCount === mediaElements.length) {
+                  container.classList.remove('opacity-0');
                 }
               });
+            } else {
+              if (el.complete) {
+                loadedCount++;
+              } else {
+                el.addEventListener('load', () => {
+                  loadedCount++;
+                  if (loadedCount === mediaElements.length) {
+                    container.classList.remove('opacity-0');
+                  }
+                });
+              }
             }
           });
           
-          // If all images already cached, show immediately
-          if (loadedCount === images.length && imgContainer) {
-            imgContainer.classList.remove('opacity-0');
+          // If all already loaded, show immediately
+          if (loadedCount === mediaElements.length) {
+            container.classList.remove('opacity-0');
           }
         }
       }

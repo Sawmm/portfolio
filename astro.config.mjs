@@ -20,7 +20,9 @@ export default defineConfig({
         style: 'normal'
       }]
     }
-  }],
+  },
+
+],
   vite: {
     plugins: [tailwindcss()]
   }
