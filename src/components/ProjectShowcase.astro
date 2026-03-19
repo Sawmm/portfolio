@@ -108,21 +108,16 @@ import projects from "../data/projects.json";
 
 <style>
 .hover-underline {
-  position: relative;
+  display: inline;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 50% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 0.3s ease;
 }
-.hover-underline::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;           /* Start from center */
-  width: 0;
-  height: 2px;
-  background-color: currentColor;
-  transform: translateX(-50%);  /* Center the starting point */
-  transition: width 0.3s ease;
-}
-.hover-underline:hover::after {
-  width: 100%;
+.hover-underline:hover {
+  background-size: 100% 2px;
 }
 
 :global(body) {
