@@ -18,9 +18,7 @@ import projects from "../data/projects.json";
             class="stagger-item cursor-pointer p-3"
             style={`--delay: ${(index + 1) * 100}ms`}
           >
-            <div class="hover-underline">
-              <span data-id={project.id} class="focus:font-bold">{project.title}</span>
-            </div>
+            <span data-id={project.id} class="hover-underline focus:font-bold">{project.title}</span>
           </li>
         ))}
       </ul>
