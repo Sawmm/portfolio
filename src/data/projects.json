@@ -15,8 +15,8 @@
   },
   {
     "id": "ML",
-    "title": "",
-    "description": "Meta-Market is a tribute to the workers who bring Hong Kong to life through its wet markets. As a vegetarian outsider, I moved through stalls of meat and fish to document the vendors the city depends upon, capturing brief moments of connection with those who welcomed my camera. Inspired by Ken Kitano, I created 'meta-portraits' by layering images of vendors, customers, and products from Lok Fu, Shek Kip Mei, and Pei Ho to represent the density and rhythm of market life. To ensure individual stories remained visible, I also isolated the people involved around an empty central space to suggest their shared presence and unity. Printed on matte paper, this work gives these often underappreciated workers a voice and a place in the frame.",
+    "title": "Hybrid models in credit default prediction",
+    "description": "This study researches the performance of hybrid models in predicting credit default. It aims to provide financial institutions with an effective way to predict potential credit defaulters. By combining XGBoost and Random Forest in a two-stage ensemble, leveraging their combined strengths in predictive power and reliability when using imbalanced data, the hybrid model demonstrated a 3.6% improvement compared to the best performing individual models. These results indicate the potential of hybrid models to provide financial institutions and regulators with increased accuracy and reliability when assessing credit risk. This also motivates further research into other hybrid models to further increase accuracy and reliability.",
     "images": ["/images/meats -2.webp", "/images/vegs.webp", "/images/vendors-1-2.webp", "/images/cust1_mock_color.webp"]
   }
 ]
