@@ -3,9 +3,9 @@ import projects from "../data/projects.json";
 ---
 
 <div id="page-container" class="font-mono max-w-5xl mx-auto px-8 pt-16 pb-8 select-none">
-    <h1 class="stagger-item text-center text-xl font-bold pb-10" style="--delay: 0ms">Sam Huisman</h1> 
-    <a href="https://github.com/sawmm" target="_blank" rel="noopener noreferrer" class="hover-underline"></a>
-    <!-- GitHub Link -->
+    <a href="https://github.com/sawmm" target="_blank" rel="noopener noreferrer" class="block text-center">
+      <h1 class="stagger-item inline-block text-xl font-bold pb-10 hover-underline" style="--delay: 0ms">Sam Huisman</h1>
+    </a>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     
@@ -29,11 +29,6 @@ import projects from "../data/projects.json";
     </div>
     
     
-  </div>
-  <div class="stagger-item text-center mt-12 pt-8" style={`--delay: ${(projects.length + 2) * 100}ms`}>
-    <a href="https://github.com/sawmm" target="_blank" rel="noopener noreferrer" class="hover-underline">
-      github.com/sawmm
-    </a>
   </div>
 </div>
 
