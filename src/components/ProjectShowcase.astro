@@ -3,7 +3,7 @@ import projects from "../data/projects.json";
 ---
 
 <div id="page-container" class="font-mono max-w-5xl mx-auto px-8 pt-16 pb-8 select-none">
-    <a href="https://github.com/sawmm" target="_blank" rel="noopener noreferrer" class="block text-center">
+    <a href="https://github.com/sawmm" target="_blank" rel="noopener noreferrer" class="block text-center mb-16">
       <h1 class="stagger-item inline-block text-xl font-bold pb-10 hover-underline" style="--delay: 0ms">Sam Huisman</h1>
     </a>
 
@@ -111,10 +111,12 @@ import projects from "../data/projects.json";
   display: inline;
   text-decoration: none;
   background-image: linear-gradient(currentColor, currentColor);
-  background-position: 50% 100%;
+  background-position: 0% 100%;
   background-repeat: no-repeat;
   background-size: 0% 2px;
   transition: background-size 0.3s ease;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 .hover-underline:hover {
   background-size: 100% 2px;
