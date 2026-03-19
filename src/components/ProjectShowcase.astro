@@ -15,10 +15,10 @@ import projects from "../data/projects.json";
       <ul class="space-y-5 p-6">
         {projects.map((project, index) => (
           <li 
-            class="stagger-item cursor-pointer p-3"
+            class="stagger-item cursor-pointer p-3 hover-underline"
             style={`--delay: ${(index + 1) * 100}ms`}
           >
-            <span data-id={project.id} class="hover-underline focus:font-bold">{project.title}</span>
+            <span data-id={project.id} class="focus:font-bold">{project.title}</span>
           </li>
         ))}
       </ul>
