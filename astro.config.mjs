@@ -21,8 +21,18 @@ export default defineConfig({
       }]
     }
   },
-
-],
+  {
+    provider: fontProviders.local(),
+    name: "Neue Regrade Variable",
+    cssVariable: "--Neue-regrade",
+    options: {
+      variants: [{
+        src: ['./public/fonts/SourceCodePro-Medium.ttf'],
+        weight: 500,
+        style: 'normal'
+      }]
+    }
+  }],
   vite: {
     plugins: [tailwindcss()]
   }
