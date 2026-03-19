@@ -17,13 +17,8 @@
     "id": "ML",
     "title": "Hybrid models in credit default prediction",
     "description": "This study researches the performance of hybrid models in predicting credit default. It aims to provide financial institutions with an effective way to predict potential credit defaulters. By combining XGBoost and Random Forest in a two-stage ensemble, leveraging their combined strengths in predictive power and reliability when using imbalanced data, the hybrid model demonstrated a 3.6% improvement compared to the best performing individual models. These results indicate the potential of hybrid models to provide financial institutions and regulators with increased accuracy and reliability when assessing credit risk. This also motivates further research into other hybrid models to further increase accuracy and reliability.",
-    "images": []
-  },
-  {
-    "id": "",
-    "title": "Hybrid models in credit default prediction",
-    "description": "This study researches the performance of hybrid models in predicting credit default. It aims to provide financial institutions with an effective way to predict potential credit defaulters. By combining XGBoost and Random Forest in a two-stage ensemble, leveraging their combined strengths in predictive power and reliability when using imbalanced data, the hybrid model demonstrated a 3.6% improvement compared to the best performing individual models. These results indicate the potential of hybrid models to provide financial institutions and regulators with increased accuracy and reliability when assessing credit risk. This also motivates further research into other hybrid models to further increase accuracy and reliability.",
-    "images": []
+    "images": [],
+    "github": "https://github.com/Sawmm/ML9"
   }
   
 ]
