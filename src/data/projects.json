@@ -8,6 +8,12 @@
     "images": []
   },
   {
+    "id": "party-logo",
+    "title": "Party Logo Development",
+    "description": "Logo development project for a party event. Explored various design options and iterations to create a unique and memorable visual identity. The project involved experimenting with different styles, effects, and color schemes to achieve the perfect look for the event branding.",
+    "images": ["images/jasperlogobig.webp", "images/opt2big.webp", "images/opt4big.webp", "images/dithering-effect-2.webp"]
+  },
+  {
     "id": "MM",
     "title": "Meta Markets",
     "description": "Meta-Market is a tribute to the workers who bring Hong Kong to life through its wet markets. As a vegetarian outsider, I moved through stalls of meat and fish to document the vendors the city depends upon, capturing brief moments of connection with those who welcomed my camera. Inspired by Ken Kitano, I created 'meta-portraits' by layering images of vendors, customers, and products from Lok Fu, Shek Kip Mei, and Pei Ho to represent the density and rhythm of market life. To ensure individual stories remained visible, I also isolated the people involved around an empty central space to suggest their shared presence and unity. Printed on matte paper, this work gives these often underappreciated workers a voice and a place in the frame.",
